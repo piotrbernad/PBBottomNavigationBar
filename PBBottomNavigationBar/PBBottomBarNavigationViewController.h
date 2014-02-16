@@ -10,12 +10,16 @@
 
 @interface PBBottomBarNavigationViewController : UINavigationController <UINavigationControllerDelegate>
 
+// set on to show bottom bar
 @property (nonatomic, assign, getter = isBottomBarVisible) BOOL bottomBarVisible;
+
 // default 25.0f;
 @property (nonatomic, assign) CGFloat bottomBarHeight;
 
+// view that represents bottom bar
 @property (nonatomic, strong) UIView *bottomBarView;
 
+// controller that shows up after tap on bottom bar
 @property (nonatomic, strong) UIViewController *controllerToShow;
 
 // disable to prevent showing bottom controller when gesture is recognized
@@ -26,7 +30,5 @@
 
 // set this property to show or hide bottom controller
 @property (nonatomic, assign, getter = isPresentingBottomController) BOOL presentBottomController;
-
-- (void)hideBottomController;
 
 @end

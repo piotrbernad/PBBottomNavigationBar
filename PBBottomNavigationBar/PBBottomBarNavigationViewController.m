@@ -43,17 +43,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    self.delegate = self;
-    
+
     _animator = [[PBAnimator alloc] init];
-    
+
+    [self setDelegate:self];
     [self setBottomBarView:[self bottomBar]];
-    
     [self setBottomBarVisible:YES];
     [self setTapGestureRecognizerActive:YES];
-    
+    [self setExampleViewController];
+}
+
+- (void)setExampleViewController {
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     PlayerViewController *player = [story instantiateViewControllerWithIdentifier:@"player"];
     [self setControllerToShow:player];
@@ -66,9 +66,11 @@
     
     if (_bottomBarVisible) {
         UIView *layoutContainer = [self.view subviews][0];
-        [layoutContainer setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), CGRectGetHeight(rect) - _bottomBarHeight)];
-        
-        [_bottomBarView setFrame:CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(rect) - _bottomBarHeight, CGRectGetWidth(rect), _bottomBarHeight)];
+        CGRect containerRect = CGRectMake(CGRectGetMinX(rect), CGRectGetMinY(rect), CGRectGetWidth(rect), CGRectGetHeight(rect) - _bottomBarHeight);
+        [layoutContainer setFrame:containerRect];
+
+        CGRect bottomRect = CGRectMake(CGRectGetMinX(rect), CGRectGetMaxY(rect) - _bottomBarHeight, CGRectGetWidth(rect), _bottomBarHeight);
+        [_bottomBarView setFrame:bottomRect];
     }
     [self.view bringSubviewToFront:_bottomBarView];
     
@@ -79,20 +81,16 @@
     if (self.bottomBarVisible) {
         [self.view setNeedsDisplay];
     }
-    
-    if (self.visibleViewController == _controllerToShow) {
-        
-    }
-    
 }
 
 - (void)setBottomBarView:(UIView *)bottomBarView {
     if (_bottomBarView) {
         [_bottomBarView removeFromSuperview];
     }
-    
-    [self.view addSubview:bottomBarView];
+
     _bottomBarView = bottomBarView;
+    
+    [self.view addSubview:_bottomBarView];
     [self.view setNeedsDisplay];
 }
 
@@ -109,9 +107,8 @@
         return;
     }
     
-    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognized:)];
     [_tapGestureRecognizer setNumberOfTapsRequired:1];
-    [_tapGestureRecognizer addTarget:self action:@selector(tapRecognized:)];
     [_bottomBarView addGestureRecognizer:_tapGestureRecognizer];
 }
 
@@ -122,8 +119,7 @@
         [self showBottomViewController];
     } else {
         [self hideBottomViewController];
-    }
-    
+    }   
 }
 
 - (void)tapRecognized:(UITapGestureRecognizer *)sender {

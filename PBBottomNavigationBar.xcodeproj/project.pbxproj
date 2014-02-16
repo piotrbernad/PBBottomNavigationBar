@@ -211,7 +211,7 @@
 				ORGANIZATIONNAME = "Piotr Bernad";
 				TargetAttributes = {
 					241CECAA18B0E44200B1AAC1 = {
-						TestTargetID = 241CEC8918B0E44100B1AAC1;
+						TestTargetID = 241CEC8918B0E44100B1AAC1 /* PBBottomNavigationBar */;
 					};
 				};
 			};

@@ -89,16 +89,8 @@
                                     <segue destination="YdF-5c-gN4" kind="push" id="Dd2-uE-ilu"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tg6-Sg-2Fv">
-                                <rect key="frame" x="46" y="559" width="229" height="9"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.58501505361619122" green="0.80715880100000004" blue="0.35903929119301847" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.72626164063861509" blue="0.72469325432167331" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="GEq-Lo-piZ" firstAttribute="top" secondItem="Tg6-Sg-2Fv" secondAttribute="bottom" id="TZW-Us-K9h"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ilm-gr-B9d"/>
                 </viewController>
